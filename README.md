@@ -8,17 +8,22 @@ the user is unauthenticated, the request will be redirected to a login page.
     $ npm install passport-login-check
 
 ## Usage
+*index.js*
+```JavaScript
+var l = require('passport-login-check')
 
-    *index.js*
-    ```javascript
-    var l = require('passport-login-check')
-    l.defaultRedirectUrl = '/login' //If req is unauthenticated, user will be redirected to this
-    l.defaultReturnUrl = '/' //If req is unauthenticated, user will be returned to this after authentication
+//If req is unauthenticated, user will be redirected to this
+l.defaultRedirectUrl = '/login'
+//If req is unauthenticated, user will be returned to this after authentication
+l.defaultReturnUrl = '/'
 
-    app.use('/profile', l.loggedIn()) //Will redirect to defaultRedirectUrl and return to defaultReturnUrl
-    app.use('/settings', l.loggedIn('/settings')) //Will return to /settings after authentication
-    app.use('/user/:id', l.loggedIn('/profile', '/auth/facebook')) //Will redirect to /auth/authentication if req is unauthenticated and return to /profile after authentication
-    ```
+//Will redirect to defaultRedirectUrl if req is unauthenticated and return to defaultReturnUrl
+app.use('/profile', l.loggedIn())
+//Will return to /settings after authentication
+app.use('/settings', l.loggedIn('/settings'))
+//Will redirect to /auth/authentication if req is unauthenticated and return to /profile after authentication
+app.use('/user/:id', l.loggedIn('/profile', '/auth/facebook'))
+```
 
 ## TODO
 
